@@ -1,0 +1,185 @@
+<html>
+<head>
+<title>Stack Implementation</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: Arial;
+    line-height: 1.6;
+    background-color: rgb(240, 248, 255); 
+    color: rgb(51, 51, 51); 
+}
+header{
+    background-color: rgb(34, 102, 145); 
+    color: rgb(255, 255, 255); 
+    padding: 20px;
+    text-align: center;
+}
+h1, h2, h3, h4{
+    margin-bottom: 15px;
+}
+section{
+    padding: 20px;
+    margin: 20px;
+}
+img{
+    float: left;
+    width: 100%; 
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+pre{
+    background-color: rgb(245, 245, 245); 
+    border-left: 5px solid rgb(93, 156, 236); 
+    padding: 10px;
+    margin-top: 15px;
+}
+.code-container{
+    margin-top: 20px;
+}
+button-container{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 15px;
+}
+.button{
+    padding: 10px 20px;
+    background-color: rgb(60, 141, 188); /* Soft blue */
+    color: rgb(255, 255, 255); /* White text */
+    text-decoration: none;
+    font-weight: bold;
+}
+.button:hover{
+    background-color: rgb(45, 123, 172); 
+}
+footer{
+    text-align: center;
+    padding: 10px;
+    background-color: rgb(34, 34, 34);  
+    margin-top: 20px;
+}
+footer a{
+    color: rgb(77, 137, 193); 
+    text-decoration: none;
+    font-weight: bold;
+}
+footer a:hover{
+    text-decoration: underline;
+}
+</style>
+</head>
+<body>
+    <header>
+        <h1>Queue Data Structure</h1>
+    </header>
+    <section>
+        <p>A queue is a linear data structure that stores the elements sequentially. It uses the FIFO (First In First Out) approach for accessing elements. It operates like a line where elements are added at one end (rear) and removed from the other end (front).</p>     
+        <img src="queue.png">
+        <h2>Key Operations in a Queue:</h2>
+        <h3>1. Enqueue Operation</h3>
+        <p>The enqueue operation adds an element to the rear (end) of the queue.</p>
+        <img src="queue-enqueue.png">
+        <h4>Algorithm for Enqueue Operation:</h4>
+        <pre>
+Step 1: Check if the queue is full (overflow condition).
+Step 2: If the queue is not full, increment the rear pointer to point to the next empty space.
+Step 3: Add the new element at the position pointed to by the rear pointer.
+Step 4: If this is the first element, set the front pointer to the rear.
+Step 5: End.
+        </pre>
+        <h3>2. Dequeue Operation</h3>
+        <p>The dequeue operation removes an element from the front of the queue.</p>
+        <img src="queue-dequeue.png">
+        <h4>Algorithm for Dequeue Operation:</h4>
+        <pre>
+Step 1: Check if the queue is empty (underflow condition).
+Step 2: If the queue is not empty, access the element pointed to by the front pointer.
+Step 3: Increment the front pointer to remove the front element.
+Step 4: If the front pointer exceeds the rear pointer, reset both pointers (queue is empty).
+Step 5: Return the removed element.
+Step 6: End.
+        </pre>
+        <div class="code-container">
+            <div class="button-container">
+                <a href="queue-c.html" class="button">C</a>
+                <a href="queue-python.html" class="button">Python</a>
+                <a href="queue-java.html" class="button">Java</a>
+            </div>
+            <pre>
+import java.util.Scanner;
+class queue{
+    int rear=-1;
+    int front=-1;
+    int a[]=new int[10];
+    void enqueue(){
+        if (rear==9) 
+            System.out.println("\nOverflow");
+        else{
+            Scanner s=new Scanner(System.in);
+            System.out.println("\nEnter an element: ");
+            int n=s.nextInt();
+            if (front==-1) 
+                front=0;
+            a[++rear]=n;
+        }
+    }
+    void dequeue(){
+        if (front==-1)
+            System.out.println("\nUnderflow");
+        else{ 
+            front++;
+            if (front>rear)
+                front=rear=-1;         
+        }
+    }
+    void display(){
+        if (front==-1) 
+            System.out.println("\nQueue is empty");
+        else{
+            System.out.println("\nQueue is: ");
+            for (int i=front;i<=rear;i++)
+                System.out.print(a[i]+" ");
+        }
+    }
+}
+class qu{
+    public static void main(String args[]){
+        int c=0;
+        queue s=new queue();
+        while (c!=4){
+            System.out.println("\nMenu:\n1. Enqueue\n2. Dequeue\n3. Display\n4. Exit");
+            Scanner	sc=new Scanner(System.in);
+            System.out.println("\nEnter your choice: ");
+            c=sc.nextInt();
+            switch(c){
+                case 1:
+                s.enqueue();
+                break;
+                case 2:
+                s.dequeue();
+                break;
+                case 3:
+                s.display();
+                break;
+                case 4:
+                System.out.println("\nExit");
+                break;
+                default:
+                System.out.println("\nInvalid choice");
+            }
+        }	
+                           
+    }
+}              
+            </pre>
+        </div>
+    </section>
+    <footer>
+        <a href="stack-c.html">Stack Implementation</a>
+    </footer>
+</body>
+</html>
